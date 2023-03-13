@@ -1,0 +1,19 @@
+name: print_image_generate_tool
+description: flutter pos 终端应用中打印场景的工具包。提供 API 将 widget 视图转换成 Uint8List 数据，内部维护队列，按加入顺序生成返回图像数据。
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.5.3"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
