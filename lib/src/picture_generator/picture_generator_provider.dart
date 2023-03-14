@@ -50,5 +50,8 @@ class PicGenerateResult {
   final Uint8List? data;
   final PicGenerateTask taskItem;
 
-  PicGenerateResult(this.data, this.taskItem);
+  PicGenerateResult(
+    this.data,
+    this.taskItem,
+  );
 }
