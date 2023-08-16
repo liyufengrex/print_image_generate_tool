@@ -30,8 +30,8 @@ MaterialApp(
 ```dart
 //打印图层生成成功
   Future<void> _onPictureGenerated(PicGenerateResult data) async {
-    //widget生成的图像的字节结果
-    final imageBytes = data.data;
+    //widget生成的图像结果
+    final imageBytes = data.image;
     //打印任务信息
     final printTask = data.taskItem;
     //打印票据类型（标签、小票）

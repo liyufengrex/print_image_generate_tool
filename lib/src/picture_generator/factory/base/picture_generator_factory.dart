@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:typed_data';
-
+import 'dart:ui' as ui show Image;
 import 'package:flutter/material.dart';
 
 import '../../picture_generator_provider.dart';
@@ -62,7 +61,7 @@ abstract class PictureGeneratorFactory {
   void finishTask(
     GlobalKey<PictureGeneratorWidgetState> macineKey,
     bool success,
-    Uint8List? data,
+    ui.Image? data,
   ) {
     if (_busyMachines.contains(macineKey)) {
       _busyMachines.remove(macineKey);

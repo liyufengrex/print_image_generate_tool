@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
-
+import 'dart:ui' as ui show Image;
+import 'dart:ui';
 import '../../print_image_generate_tool.dart';
 
 class PictureGeneratorProvider {
@@ -47,11 +48,29 @@ class PicGenerateTask<T> {
 
 /// widget 转 图像 结果
 class PicGenerateResult {
-  final Uint8List? data;
+  final ui.Image? image;
   final PicGenerateTask taskItem;
 
+  // image 转 uint8List
+  Future<Uint8List?> convertUint8List({
+    ImageByteFormat imageByteFormat = ImageByteFormat.png,
+  }) async {
+    if (image == null) {
+      return Future(() => null);
+    } else {
+      final byteData = await image!.toByteData(format: imageByteFormat);
+      return byteData?.buffer.asUint8List();
+    }
+  }
+
+  // 生成的图像像素宽度
+  int get imageWidth => image == null ? 0 : image!.width;
+
+  // 生成的图像像素高度
+  int get imageHeight => image == null ? 0 : image!.height;
+
   PicGenerateResult(
-    this.data,
+    this.image,
     this.taskItem,
   );
 }

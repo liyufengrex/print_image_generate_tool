@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'dart:ui';
+import 'dart:ui' as ui show Image;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
@@ -71,21 +71,16 @@ class PictureGeneratorWidgetState extends State<PictureGeneratorWidget> {
 
   void _captureWidget(double pixelRatio) async {
     final boundary = _boundaryKey.currentContext?.findRenderObject();
-    Uint8List? imgData;
+    ui.Image? imgData;
     try {
       if (boundary != null && boundary is RenderRepaintBoundary) {
-        final image = await boundary.toImage(pixelRatio: pixelRatio);
-        LogTool.log("图片宽高：宽 ：${image.width}, 高：${image.height}");
-        ByteData? byteData =
-            await image.toByteData(format: ImageByteFormat.png);
-        if (byteData != null) {
-          imgData = byteData.buffer.asUint8List();
-        }
+        imgData = await boundary.toImage(pixelRatio: pixelRatio);
+        LogTool.log("图片宽高：宽 ：${imgData.width}, 高：${imgData.height}");
       }
     } catch (e) {
       LogTool.log(e.toString());
     } finally {
-      if (imgData != null && imgData.isNotEmpty) {
+      if (imgData != null) {
         LogTool.log("图片生成成功");
         _getGeneratorFactory().finishTask(_getMacineKey(), true, imgData);
       } else {
