@@ -82,7 +82,7 @@ mixin ATempWidget {
 
 本库内部已实现堵塞队列，小票和标签是单独的两个队列。
 
-结合 `pd_printer_plugin` 打印功能库，可实现完整的【小票、标签】打印能力，具体查询 pd_printer_plugin 中 example。
+结合 `flutter_printer_plus` 打印功能库，可实现完整的【小票、标签】打印能力，具体查询 flutter_printer_plus 中 example。
 
 
 
